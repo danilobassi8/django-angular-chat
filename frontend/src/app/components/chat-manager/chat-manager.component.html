@@ -1,0 +1,56 @@
+<div class="container">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="activeChat" class="nav-tabs">
+    <!-- tab picker-->
+    <li *ngFor="let tab of openChats" [ngbNavItem]="tab">
+      <a ngbNavLink>
+        {{ tab }}
+        <span class="btn-close ms-2 fw-light" (click)="closeTab($event, tab)">x</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="addTab($event)">...</a>
+    </li>
+    <div class="config-btn" ngbDropdown #myDrop="ngbDropdown">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        id="configDropdown"
+        ngbDropdownAnchor
+        (focus)="myDrop.open()"
+      >
+        <i class="bi bi-gear"></i>
+      </button>
+      <div ngbDropdownMenu aria-labelledby="configDropdown">
+        <button ngbDropdownItem><i class="bi bi-person-circle"></i> Change chat name</button>
+        <button ngbDropdownItem><i class="bi bi-circle-half"></i> Change theme</button>
+      </div>
+    </div>
+  </ul>
+
+  <!-- chats -->
+  <div class="pb-2 mt-2 chat-msg-container">
+    <ng-container *ngFor="let chat of openChats">
+      <app-chat *ngIf="chat === activeChat" [chatMessages]="getChatMessages(chat)"></app-chat>
+    </ng-container>
+  </div>
+
+  <!-- input -->
+  <div class="input-chat-container">
+    <textarea
+      type="text"
+      style="resize: none;"
+      class="form-control input-chat"
+      [(ngModel)]="currentMsg"
+      (keyup.enter)="sendMsg(activeChat, currentMsg)"
+    >
+    </textarea>
+
+    <button
+      type="button"
+      class="ml-2 btn btn-primary send-msg-btn"
+      (click)="sendMsg(activeChat, currentMsg)"
+    >
+      Send
+    </button>
+  </div>
+</div>

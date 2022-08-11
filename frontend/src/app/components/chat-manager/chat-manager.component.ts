@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat-manager',
@@ -6,16 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-manager.component.scss'],
 })
 export class ChatManagerComponent implements OnInit {
-  constructor() {}
-
-  openChats = ['hola', 'hi', 'en'];
-  activeChat = this.openChats[0];
+  openChats: string[] = [];
   chatMessages: Map<string, any[]> = new Map();
 
   currentMsg = '';
+  activeChat = '';
   counter = this.openChats.length + 1;
 
-  ngOnInit(): void {}
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((data: ParamMap) => {
+      this.activeChat = data.get('activeChat') || 'welcome';
+      if (!this.openChats.includes(this.activeChat)) {
+        this.openChats.push(this.activeChat);
+      }
+    });
+  }
 
   closeTab(event: MouseEvent, toRemove: string) {
     this.openChats = this.openChats.filter((id) => id !== toRemove);

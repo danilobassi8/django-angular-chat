@@ -1,8 +1,47 @@
 <ul class="nav nav-tabs">
+  <!-- tabs-->
   <li *ngFor="let chat of openChats" class="nav-item">
     <a class="nav-link" [ngClass]="{active: chat == activeChat}" routerLink="/chat/{{chat}}">
       {{chat | titlecase}}
       <button type="button" class="btn-close close-tab" aria-label="Close"></button>
     </a>
   </li>
+
+  <!-- add channel -->
+  <li>
+    <button
+      class="nav-link"
+      style="flex: 1; text-align: center;"
+      data-bs-toggle="modal"
+      data-bs-target="#add-chat-modal"
+    >
+      <i class="bi bi-plus-circle"></i>
+    </button>
+  </li>
+
+  <!-- config dropdown -->
+  <li class="nav-item dropdown">
+    <a
+      class="nav-link dropdown-toggle"
+      data-bs-toggle="dropdown"
+      href="#"
+      role="button"
+      aria-expanded="false"
+    >
+      Dropdown
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="dropdown-item" href="#"> <i class="bi bi-person-circle"></i> Change chat name </a>
+      </li>
+      <li>
+        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change-theme-modal">
+          <i class="bi bi-circle-half"></i> Change theme
+        </a>
+      </li>
+    </ul>
+  </li>
 </ul>
+
+<modal-add-chat></modal-add-chat>
+<modal-change-theme></modal-change-theme>

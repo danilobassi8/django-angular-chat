@@ -9,7 +9,7 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./chat-manager.component.scss'],
 })
 export class ChatManagerComponent implements OnInit {
-  openChats: string[] = [];
+  openChats: string[] = ['chat', 'chat2'];
   chatMessages: Map<string, any[]> = new Map();
 
   currentMsg = '';

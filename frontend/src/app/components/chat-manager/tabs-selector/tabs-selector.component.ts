@@ -20,4 +20,8 @@ export class TabsSelectorComponent implements OnInit {
     this.tabClosed.emit(chat);
     console.log('close', chat);
   }
+
+  openNewChatTab(){
+
+  }
 }

@@ -1,13 +1,10 @@
-.theme-blue {
-  @import './assets/themes/blue.scss';
-}
-
-.theme-green {
-  @import './assets/themes/green.scss';
-}
-
-@import './assets/themes/default.scss';
-
 /* Importing Bootstrap and Icons*/
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+
+body {
+  height: 100vh;
+  * {
+    transition: background-color 0.6s ease;
+  }
+}

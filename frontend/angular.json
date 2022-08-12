@@ -26,14 +26,59 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/assets/themes/default.css",
+                "bundleName": "theme_default",
+                "inject": true
+              },
+              {
+                "input": "src/assets/themes/cyborg.css",
+                "bundleName": "theme_cyborg",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/lux.css",
+                "bundleName": "theme_lux",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/morph.css",
+                "bundleName": "theme_morph",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/quartz.css",
+                "bundleName": "theme_quartz",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/sketchy.css",
+                "bundleName": "theme_sketchy",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/slate.css",
+                "bundleName": "theme_slate",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/superhero.css",
+                "bundleName": "theme_superhero",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/vapor.css",
+                "bundleName": "theme_vapor",
+                "inject": false
+              }
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -94,13 +139,8 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }

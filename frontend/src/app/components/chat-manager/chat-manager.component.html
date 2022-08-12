@@ -1,30 +1,32 @@
-<div class="container">
-  <app-tabs-selector [openChats]="openChats" [activeChat]="activeChat"></app-tabs-selector>
+<div class="h-100 w-100 card-primary themed">
+  <div class="container h-100 d-flex flex-column justify-content-end">
+    <app-tabs-selector [openChats]="openChats" [activeChat]="activeChat"></app-tabs-selector>
 
-  <!-- chats -->
-  <div class="pb-2 mt-2 chat-msg-container">
-    <ng-container *ngFor="let chat of openChats">
-      <app-chat *ngIf="chat === activeChat" [chatMessages]="getChatMessages(chat)"></app-chat>
-    </ng-container>
-  </div>
-  {{activeChat}}
-  <!-- input -->
-  <div class="input-chat-container">
-    <textarea
-      type="text"
-      style="resize: none;"
-      class="form-control input-chat"
-      [(ngModel)]="currentMsg"
-      (keyup.enter)="sendMsg(activeChat, currentMsg)"
-    >
-    </textarea>
+    <!-- chats -->
+    <div class="pb-2 my-2 chat-msg-container card border-secondary">
+      <ng-container *ngFor="let chat of openChats">
+        <app-chat *ngIf="chat === activeChat" [chatMessages]="getChatMessages(chat)"></app-chat>
+      </ng-container>
+    </div>
 
-    <button
-      type="button"
-      class="ml-2 btn btn-primary send-msg-btn"
-      (click)="sendMsg(activeChat, currentMsg)"
-    >
-      Send
-    </button>
+    <!-- input -->
+    <div class="input-chat-container mb-2">
+      <textarea
+        type="text"
+        style="resize: none;"
+        class="form-control input-chat"
+        [(ngModel)]="currentMsg"
+        (keyup.enter)="sendMsg(activeChat, currentMsg)"
+      >
+      </textarea>
+
+      <button
+        type="button"
+        class="ms-3 btn btn-primary send-msg-btn"
+        (click)="sendMsg(activeChat, currentMsg)"
+      >
+        Send
+      </button>
+    </div>
   </div>
 </div>

@@ -19,9 +19,9 @@ export class ThemeService {
   ];
   public static default = 'default';
   public theme = new BehaviorSubject(this.current);
-  public URLPrefix = environment.production ? '' : '';
+  public URLPrefix = environment.production ? '' : ''; // NOTE: Could differ if you deploy it somewhere
 
-  private themePrefix = 'theme-';
+  private themePrefix = 'theme_';
   private readonly style: HTMLLinkElement;
 
   constructor() {
@@ -39,7 +39,7 @@ export class ThemeService {
   }
 
   public set current(value: string) {
-    const newStyleHref = `${this.URLPrefix}/${value}.css`;
+    const newStyleHref = `${this.URLPrefix}/${this.themePrefix}${value}.css`;
 
     fetch(newStyleHref, { mode: 'no-cors' })
       .then((res) => {

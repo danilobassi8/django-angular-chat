@@ -10678,15 +10678,6 @@ pre {
   border: 2px solid #333;
   border-radius: 15px 5px 5px 25px/5px 25px 25px 5px;
 }
-.btn-close {
-  background-image: none;
-}
-.btn-close::before {
-  position: absolute;
-  top: 0.8rem;
-  right: 1rem;
-  content: 'X';
-}
 .img-thumbnail {
   border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
 }

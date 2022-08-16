@@ -1,6 +1,10 @@
 .theme-card {
   cursor: pointer;
-  background-color: var(--bs-primary);
-  background-clip: content-box;
-  height: 20vh;
+  height: 210px;
+  max-width: fit-content;
+}
+
+.theme-thumbnail {
+  height: 200px;
+  border: 2px solid var(--bs-primary)
 }

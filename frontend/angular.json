@@ -26,7 +26,15 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "ignore": ["**/themes/*.css"],
+                "output": "/assets/"
+              }
+            ],
             "styles": [
               "src/styles.scss",
               {
@@ -60,11 +68,6 @@
                 "inject": false
               },
               {
-                "input": "src/assets/themes/slate.css",
-                "bundleName": "theme_slate",
-                "inject": false
-              },
-              {
                 "input": "src/assets/themes/superhero.css",
                 "bundleName": "theme_superhero",
                 "inject": false
@@ -72,6 +75,11 @@
               {
                 "input": "src/assets/themes/vapor.css",
                 "bundleName": "theme_vapor",
+                "inject": false
+              },
+              {
+                "input": "src/assets/themes/united.css",
+                "bundleName": "theme_united",
                 "inject": false
               }
             ],

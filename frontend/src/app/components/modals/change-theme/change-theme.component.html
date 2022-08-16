@@ -7,14 +7,18 @@
       </div>
 
       <div class="modal-body">
-        <div class="row">
+        <div class="row justify-content-center">
           <div
             *ngFor="let theme of availableThemes"
-            class="col-3 theme-card py-2"
+            class="theme-card py-2"
             [ngClass]="getThemeClass(theme)"
             (click)="changeTheme(theme)"
           >
-            {{theme}}
+            <img
+              class="theme-thumbnail rounded-2"
+              [src]="'assets/themes/imgs/'+theme+'.png'"
+              [alt]="'theme ' + theme"
+            />
           </div>
         </div>
       </div>

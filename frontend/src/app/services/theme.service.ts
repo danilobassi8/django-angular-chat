@@ -8,14 +8,14 @@ import { environment } from 'src/environments/environment';
 export class ThemeService {
   public availables = [
     'default',
-    'morph',
+    "united",
+    'lux',
+    'superhero',
+    'vapor',
+    'cyborg',
     'sketchy',
     'quartz',
-    'slate',
-    'vapor',
-    'superhero',
-    'cyborg',
-    'lux',
+    'morph',
   ];
   public static default = 'default';
   public theme = new BehaviorSubject(this.current);

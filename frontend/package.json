@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-prod": "ng build --configuration=production",
+    "build-prod": "ng build --configuration=production --base-href=/django-angular-chat/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-test": "ng build --configuration production && lite-server --baseDir='dist/frontend'"

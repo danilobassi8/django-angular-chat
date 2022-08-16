@@ -23,11 +23,10 @@ jobs:
         working-directory: ./frontend
         run: npm run build-prod
       - name: Upload artifacts
-        working-directory: ./frontend
         uses: actions/upload-artifact@v2
         with:
           name: production-files
-          path: ./dist/frontend
+          path: ./frontend/dist/frontend
   # Deploy Job
   deploy:
     name: Deploy

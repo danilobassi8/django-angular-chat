@@ -19,7 +19,7 @@ export class ThemeService {
   ];
   public static default = 'default';
   public theme = new BehaviorSubject(this.current);
-  public URLPrefix = environment.production ? '' : ''; // NOTE: Could differ if you deploy it somewhere
+  public URLPrefix = environment.production ? 'django-angular-chat/' : ''; // NOTE: Could differ if you deploy it somewhere
 
   private themePrefix = 'theme_';
   private readonly style: HTMLLinkElement;

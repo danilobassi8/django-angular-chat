@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class ThemeService {
   public availables = [
     'default',
-    "united",
+    'united',
     'lux',
     'superhero',
     'vapor',
@@ -19,7 +19,7 @@ export class ThemeService {
   ];
   public static default = 'default';
   public theme = new BehaviorSubject(this.current);
-  public URLPrefix = environment.production ? 'test' : ''; // NOTE: Could differ if you deploy it somewhere
+  public URLPrefix = environment.themePrefix;
 
   private themePrefix = 'theme_';
   private readonly style: HTMLLinkElement;

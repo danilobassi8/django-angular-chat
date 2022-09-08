@@ -1,1 +1,11 @@
 venv/
+env/
+
+
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+backend/db.sqlite3
+backend/media

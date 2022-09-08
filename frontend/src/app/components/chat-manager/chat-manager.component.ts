@@ -1,7 +1,6 @@
+import { ChatService } from './../../services/chat.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat-manager',
@@ -16,7 +15,7 @@ export class ChatManagerComponent implements OnInit {
   activeChat = '';
   counter = this.openChats.length + 1;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private chatService: ChatService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((data: ParamMap) => {
@@ -24,6 +23,8 @@ export class ChatManagerComponent implements OnInit {
       if (!this.openChats.includes(this.activeChat)) {
         this.openChats.push(this.activeChat);
       }
+
+      this.chatService.enterRoom(this.activeChat);
     });
   }
 
@@ -42,9 +43,10 @@ export class ChatManagerComponent implements OnInit {
     return this.chatMessages.get(chatName) || [];
   }
 
-  sendMsg(active: string, currentMsg: string) {
+  sendMsg(activeChat: string, currentMsg: string) {
     this.currentMsg = '';
-    this.appendMessageToChat(active, currentMsg);
+    this.chatService.emit(activeChat, currentMsg);
+    this.appendMessageToChat(activeChat, currentMsg);
   }
 
   appendMessageToChat(chat: string, msg: string) {

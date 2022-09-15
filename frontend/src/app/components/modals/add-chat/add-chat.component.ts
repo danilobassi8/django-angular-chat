@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./add-chat.component.scss'],
 })
 export class AddChatComponent implements OnInit {
-  @Input() id: string = '';
+  newChatName = '';
 
   constructor() {}
 

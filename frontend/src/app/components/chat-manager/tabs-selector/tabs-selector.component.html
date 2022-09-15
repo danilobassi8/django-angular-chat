@@ -3,7 +3,13 @@
   <li *ngFor="let chat of openChats" class="nav-item">
     <a class="nav-link" [ngClass]="{active: chat == activeChat}" routerLink="/chat/{{chat}}">
       {{chat | titlecase}}
-      <button type="button" class="btn-close close-tab" aria-label="Close"></button>
+      <button
+        type="button"
+        class="btn-close close-tab"
+        style="z-index: -1;"
+        aria-label="Close"
+        (click)="closeTab($event,chat)"
+      ></button>
     </a>
   </li>
 

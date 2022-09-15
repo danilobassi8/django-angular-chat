@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { merge } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 // TODO: remove
@@ -27,11 +26,16 @@ export class ChatService {
     }
   }
 
+  exitRoom(roomName: string) {
+    this.webSockets.get(roomName)?.unsubscribe();
+    this.webSockets.delete(roomName);
+  }
+
   emit(roomName: string, message: string) {
     this.webSockets.get(roomName)?.next({ message });
   }
 
   onMessageReceived(roomName: string, ev: any) {
-    console.log(`from ${roomName} --> ${ev.message }`);
+    console.log(`from ${roomName} --> ${ev.message}`);
   }
 }

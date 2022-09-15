@@ -16,12 +16,11 @@ export class TabsSelectorComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  closeTab(chat: string) {
+  closeTab(ev: Event, chat: string) {
+    // to avoid triggering default anchor actions (routing)
+    ev.preventDefault();
+    ev.stopPropagation();
     this.tabClosed.emit(chat);
-    console.log('close', chat);
   }
 
-  openNewChatTab(){
-
-  }
 }

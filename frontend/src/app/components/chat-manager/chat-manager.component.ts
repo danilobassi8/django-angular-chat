@@ -1,5 +1,5 @@
 import { ChatService } from './../../services/chat.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 const DEFAULT_WELCOME_CHANNEL = 'welcome';
@@ -9,7 +9,7 @@ const DEFAULT_WELCOME_CHANNEL = 'welcome';
   templateUrl: './chat-manager.component.html',
   styleUrls: ['./chat-manager.component.scss'],
 })
-export class ChatManagerComponent implements OnInit {
+export class ChatManagerComponent implements OnInit, OnChanges {
   openChats: string[] = ['a', 'b', 'c', 'd', 'e'];
   chatMessages: Map<string, any[]> = new Map();
 
@@ -23,9 +23,18 @@ export class ChatManagerComponent implements OnInit {
     private chatService: ChatService
   ) {}
 
+  ngOnChanges(change: SimpleChanges) {
+    console.log({ change });
+  }
+
   ngOnInit(): void {
+    // subscribe to Web socket messages
+    this.chatService.messageSubscription.subscribe(({ room, message }) => {
+      this.addMessageToChat(room, message);
+    });
+
     this.route.paramMap.subscribe((data: ParamMap) => {
-      this.activeChat = data.get('activeChat') || 'DEFAULT_WELCOME_CHANNEL';
+      this.activeChat = data.get('activeChat') || DEFAULT_WELCOME_CHANNEL;
       if (!this.openChats.includes(this.activeChat)) {
         this.openChats.push(this.activeChat);
       }
@@ -67,12 +76,13 @@ export class ChatManagerComponent implements OnInit {
   sendMsg(activeChat: string, currentMsg: string) {
     this.currentMsg = '';
     this.chatService.emit(activeChat, currentMsg);
-    this.appendMessageToChat(activeChat, currentMsg);
   }
 
-  appendMessageToChat(chat: string, msg: string) {
-    const msgs = this.chatMessages.get(chat) || [];
-    msgs.push(msg);
-    this.chatMessages.set(chat, msgs);
+  private addMessageToChat(room: string, message: string) {
+    if (room === this.activeChat) {
+      const msgs = this.chatMessages.get(room) || [];
+      msgs.push(message);
+      this.chatMessages.set(room, msgs);
+    }
   }
 }

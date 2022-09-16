@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 // TODO: remove
@@ -10,8 +11,8 @@ const BACKEND_URL = '127.0.0.1:8000';
 export class ChatService {
   /** reference to the web sockets by room */
   private webSockets: Map<string, WebSocketSubject<any>> = new Map();
-  /** Main Subscription */
-  private subscription: any;
+  /** Were messages will be sent */
+  public messageSubscription: Subject<any> = new Subject();
 
   constructor() {}
 
@@ -35,7 +36,7 @@ export class ChatService {
     this.webSockets.get(roomName)?.next({ message });
   }
 
-  onMessageReceived(roomName: string, ev: any) {
-    console.log(`from ${roomName} --> ${ev.message}`);
+  onMessageReceived(room: string, res: any) {
+    this.messageSubscription.next({ room, message: res.message });
   }
 }

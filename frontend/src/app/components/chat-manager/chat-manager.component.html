@@ -1,11 +1,15 @@
 <div class="h-100 w-100 card-primary themed">
   <div class="container h-100 d-flex flex-column justify-content-end">
-    <app-tabs-selector [openChats]="openChats" [activeChat]="activeChat" (tabClosed)="onTabClosed($event)"></app-tabs-selector>
+    <app-tabs-selector
+      [openChats]="openChats"
+      [activeChat]="activeChat"
+      (tabClosed)="onTabClosed($event)"
+    ></app-tabs-selector>
 
     <!-- chats -->
     <div class="pb-2 my-2 chat-msg-container card border-secondary">
       <ng-container *ngFor="let chat of openChats">
-        <app-chat *ngIf="chat === activeChat" [chatMessages]="getChatMessages(chat)"></app-chat>
+        <app-chat [chatMessages]="getChatMessages(chat)" *ngIf="activeChat == chat"></app-chat>
       </ng-container>
     </div>
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { ChatMessage } from '../models/Message';
 
 // TODO: remove
 const BACKEND_URL = '127.0.0.1:8000';
@@ -13,6 +14,8 @@ export class ChatService {
   private webSockets: Map<string, WebSocketSubject<any>> = new Map();
   /** Were messages will be sent */
   public messageSubscription: Subject<any> = new Subject();
+
+  public fakeUserID = Math.random() * 200; // TODO: change with a real id
 
   constructor() {}
 
@@ -33,10 +36,11 @@ export class ChatService {
   }
 
   emit(roomName: string, message: string) {
-    this.webSockets.get(roomName)?.next({ message });
+    this.webSockets.get(roomName)?.next({ message, user: this.fakeUserID });
   }
 
-  onMessageReceived(room: string, res: any) {
-    this.messageSubscription.next({ room, message: res.message });
+  onMessageReceived(room: string, res: ChatMessage) {
+    console.log(res);
+    this.messageSubscription.next({ room, message: res });
   }
 }

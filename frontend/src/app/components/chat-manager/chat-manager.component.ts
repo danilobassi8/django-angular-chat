@@ -1,6 +1,7 @@
 import { ChatService } from './../../services/chat.service';
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ChatMessage } from 'src/app/models/Message';
 
 const DEFAULT_WELCOME_CHANNEL = 'welcome';
 
@@ -11,7 +12,7 @@ const DEFAULT_WELCOME_CHANNEL = 'welcome';
 })
 export class ChatManagerComponent implements OnInit, OnChanges {
   openChats: string[] = ['a', 'b', 'c', 'd', 'e'];
-  chatMessages: Map<string, any[]> = new Map();
+  chatMessages: Map<string, ChatMessage[]> = new Map();
 
   currentMsg = '';
   activeChat = '';
@@ -78,7 +79,7 @@ export class ChatManagerComponent implements OnInit, OnChanges {
     this.chatService.emit(activeChat, currentMsg);
   }
 
-  private addMessageToChat(room: string, message: string) {
+  private addMessageToChat(room: string, message: ChatMessage) {
     if (room === this.activeChat) {
       const msgs = this.chatMessages.get(room) || [];
       msgs.push(message);

@@ -1,3 +1,12 @@
-<div *ngFor="let msg of chatMessages">
-  {{msg}}
+<div *ngFor="let message of chatMessages">
+  <!-- Messages-->
+  <div class="card border-primary mb-3" style="max-width: 80%;">
+    <div class="card-header">{{ message.user }}</div>
+    <div class="card-body">
+      <h5 class="card-title">{{ message.message }}</h5>
+      <p class="card-text">
+        8:56 pm
+      </p>
+    </div>
+  </div>
 </div>
